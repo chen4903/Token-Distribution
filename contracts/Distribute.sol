@@ -28,7 +28,7 @@ contract Distribute{
         uint256 ratio;
     }
 
-    // 序号 => 地址 => 比例
+    // 序号 => receiverInfo
     mapping(uint256 => receiverInfo) public distributeInfo;
 
     modifier onlyOwner() {
