@@ -17,13 +17,13 @@ Deploy and verify the Distribute contract:
 
 1.`npx hardhat run .\scripts\deploy_Distribute.js --network bnbtest`
 
-2.`npx hardhat verify  --contract contracts/Distribute.sol:Distribute --network bnbtest ${Distribute}`
+2.`npx hardhat verify  --contract contracts/Distribute.sol:Distribute --network bnbtest ${Distribute in .env}`
 
 Deploy and verify the test-usdt contract:
 
 1.`npx hardhat run .\scripts\deploy_test-usdt.js --network bnbtest`
 
-2.`npx hardhat verify  --contract contracts/test-usdt.sol:USDT --network bnbtest ${USDT}`
+2.`npx hardhat verify  --contract contracts/test-usdt.sol:USDT --network bnbtest ${USDT in .env}`
 
 Test on chain: `npx hardhat run .\scripts\test_in_bnb_testnetwork.js --network bnbtest`
 
