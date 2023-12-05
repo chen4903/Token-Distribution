@@ -9,7 +9,7 @@ const bnbtest = process.env.bnbtest;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 module.exports = {
-  solidity: "0.8.20",
+  solidity: "0.8.9",
   networks: {
     bnbtest: {
       url: bnbtest,

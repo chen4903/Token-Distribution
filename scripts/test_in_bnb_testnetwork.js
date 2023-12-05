@@ -17,9 +17,9 @@ async function test_on_testnetwork() {
 
     console.log()
 
-    console.log("wait for 8 seconds, maybe the tx is pengding");
+    console.log("wait for 10 seconds, maybe the tx is pengding");
     // 因为交易可能没这么快确定，所以可能会报msg.sender不是pending的错误，再次执行就可以了
-    setTimeout(function() {}, 8000);
+    setTimeout(function() {}, 10000);
 
     console.log()
 
@@ -31,11 +31,11 @@ async function test_on_testnetwork() {
 
     console.log("test setDistributeInfo()...");
     const receiveArray = [
-        "0x0000000000000000000000000000000000000000", 
-        "0x0000000000000000000000000000000000000001",
-        "0x0000000000000000000000000000000000000002", 
+        "0x0000000000000000000000000000000000000001", 
+        "0x0000000000000000000000000000000000000002",
         "0x0000000000000000000000000000000000000003", 
-        "0x0000000000000000000000000000000000000004"
+        "0x0000000000000000000000000000000000000004", 
+        "0x0000000000000000000000000000000000000005"
     ];
     const receiveRatio = [1,2,3,4,10];
     const tx3 = await DistributeContract.setDistributeInfo(receiveArray, receiveRatio);
@@ -55,12 +55,19 @@ async function test_on_testnetwork() {
 
     console.log()
 
+    console.log("wait for 10 seconds, maybe the tx is pengding");
+    // 因为交易可能没这么快确定，所以可能会报msg.sender不是pending的错误，再次执行就可以了
+    setTimeout(function() {}, 10000);
+
+    console.log()
+
+
     console.log("balance of the five address:")
-    const balance0 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000000");
-    const balance1 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000001");
-    const balance2 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000002");
-    const balance3 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000003");
-    const balance4 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000004");
+    const balance0 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000001");
+    const balance1 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000002");
+    const balance2 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000003");
+    const balance3 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000004");
+    const balance4 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000005");
     console.log("address(0):", balance0);
     console.log("address(1):", balance1);
     console.log("address(2):", balance2);

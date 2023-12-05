@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.0;
 
 // 需求: 
 // A地址转账ERC20到合约地址，合约自动按照比例把余额转到A1、A2、A3、A4、A5个地址，
@@ -61,15 +61,15 @@ contract Distribute{
         }
     }
 
-    function distributeAnyERC20(address _erc20) external onlyOwner{
+    function distributeAnyERC20(IERC20 _erc20) external onlyOwner{
         uint256 denominator;
         for(uint256 i = 0; i < 5; i++) {
             denominator += distributeInfo[i].ratio;
         }
 
-        uint256 totalBalance = IERC20(_erc20).balanceOf(address(this));
+        uint256 totalBalance = _erc20.balanceOf(address(this));
         for(uint256 i = 0; i < 5; i++) {
-            IERC20(_erc20).transfer(
+            _erc20.transfer(
                 distributeInfo[i].receiveAddress, 
                 (distributeInfo[i].ratio * FACTOR / denominator) * totalBalance / FACTOR
             );
