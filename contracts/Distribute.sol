@@ -61,15 +61,15 @@ contract Distribute{
         }
     }
 
-    function distributeAnyERC20(IERC20 _erc20) external onlyOwner{
+    function distributeAnyERC20(address _erc20) external onlyOwner{
         uint256 denominator;
         for(uint256 i = 0; i < 5; i++) {
             denominator += distributeInfo[i].ratio;
         }
 
-        uint256 totalBalance = _erc20.balanceOf(address(this));
+        uint256 totalBalance = IERC20(_erc20).balanceOf(address(this));
         for(uint256 i = 0; i < 5; i++) {
-            _erc20.transfer(
+            IERC20(_erc20).transfer(
                 distributeInfo[i].receiveAddress, 
                 (distributeInfo[i].ratio * FACTOR / denominator) * totalBalance / FACTOR
             );
