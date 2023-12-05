@@ -61,18 +61,17 @@ async function test_on_testnetwork() {
 
     console.log()
 
-
     console.log("balance of the five address:")
     const balance0 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000001");
     const balance1 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000002");
     const balance2 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000003");
     const balance3 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000004");
     const balance4 = await USDTContract.balanceOf("0x0000000000000000000000000000000000000005");
-    console.log("address(0):", balance0);
-    console.log("address(1):", balance1);
-    console.log("address(2):", balance2);
-    console.log("address(3):", balance3);
-    console.log("address(4):", balance4);
+    console.log("address(1):", balance0);
+    console.log("address(2):", balance1);
+    console.log("address(3):", balance2);
+    console.log("address(4):", balance3);
+    console.log("address(5):", balance4);
 }
 
 test_on_testnetwork();

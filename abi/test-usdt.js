@@ -404,4 +404,4 @@ module.exports.USDTABI = [
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ]
+  ];
