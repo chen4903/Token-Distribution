@@ -1,11 +1,11 @@
 const hre = require("hardhat");
-const { DistributeABI } = require("../abi/DistributeABI");
-const { USDTABI } = require("../abi/test-usdt");
+const { DistributeABI } = require("../abi/DistributeABI.js");
+const { USDTABI } = require("../abi/test-usdt.js");
 
 async function test_on_testnetwork() {
     console.log("[start test on bnb test network]")
 
-    const rpc = new hre.ethers.JsonRpcProvider( process.env.bnbtest ) ;
+    const rpc = new hre.ethers.JsonRpcProvider(process.env.bnbtest ) ;
     const wallet = new hre.ethers.Wallet(process.env.PRIVATE_KEY, rpc);
     
     const DistributeContract = new hre.ethers.Contract(process.env.Distribute, DistributeABI, wallet);
@@ -18,6 +18,7 @@ async function test_on_testnetwork() {
     console.log()
 
     console.log("wait for 8 seconds, maybe the tx is pengding");
+    // 因为交易可能没这么快确定，所以可能会报msg.sender不是pending的错误，再次执行就可以了
     setTimeout(function() {}, 8000);
 
     console.log()
@@ -43,7 +44,7 @@ async function test_on_testnetwork() {
     console.log()
 
     console.log("test USDT transfer 100_000 to the Distribute...");
-    const tx4 = await USDTContract.transfer(process.env.Distribute, 100_000);
+    const tx4 = await USDTContract.transfer(process.env.Distribute, 100_000, {gasLimit: 300000});
     console.log("transfer 100_000 successfully:", tx4.hash); 
 
     console.log()
