@@ -50,7 +50,7 @@ describe("Distribute", function () {
     }
   });
 
-  // 测试：一旦有代币转到合约，就可以调用合约的方法进行分发代币给5个地址
+  // 测试：一旦有符合ERC20标准的代币转到合约，就可以调用合约的方法进行分发代币给5个地址
   it('test distributeAnyERC20', async function() {
     const receiveArray = [newOwenr.address, user01.address, user02.address, user03.address, user04.address];
     const receiveRatio = [1,2,3,4,10];

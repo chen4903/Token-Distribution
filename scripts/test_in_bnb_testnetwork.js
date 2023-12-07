@@ -43,8 +43,8 @@ async function test_on_testnetwork() {
 
     console.log()
 
-    console.log("test USDT transfer 100_000 to the Distribute...");
-    const tx4 = await USDTContract.transfer(process.env.Distribute, 100_000, {gasLimit: 300000});
+    console.log("test USDT transfer 100_000 token to the Distribute...");
+    const tx4 = await USDTContract.transfer(process.env.Distribute, ethers.parseUnits('100000', 'ether'), {gasLimit: 300000});
     console.log("transfer 100_000 successfully:", tx4.hash); 
 
     console.log()

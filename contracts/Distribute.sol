@@ -5,20 +5,12 @@ pragma solidity ^0.8.0;
 // A地址转账ERC20到合约地址，合约自动按照比例把余额转到A1、A2、A3、A4、A5个地址，
 // 并且比例和A1-A5都可以修改
 
-interface IERC20 {
-    // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-
-    function totalSupply() external view returns (uint256);
-    function balanceOf(address account) external view returns (uint256);
-    function transfer(address to, uint256 value) external returns (bool);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function approve(address spender, uint256 value) external returns (bool);
-    function transferFrom(address from, address to, uint256 value) external returns (bool);
-}
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Distribute{
+    using SafeERC20 for IERC20; // to support USDT that not the standard ERC20
+
     address public owner;
     address public pendingOwner;
     uint256 private constant FACTOR = 100000;
@@ -69,7 +61,7 @@ contract Distribute{
 
         uint256 totalBalance = _erc20.balanceOf(address(this));
         for(uint256 i = 0; i < 5; i++) {
-            _erc20.transfer(
+            _erc20.safeTransfer(
                 distributeInfo[i].receiveAddress, 
                 (distributeInfo[i].ratio * FACTOR / denominator) * totalBalance / FACTOR
             );
